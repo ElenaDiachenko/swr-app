@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ITask } from '../interfaces/ITask';
 
-// const delay = () => new Promise((res) => setTimeout(() => res(), 800));
+const delay = () => new Promise<void>((res) => setTimeout(() => res(), 800));
 
 const $api = axios.create({
   baseURL: 'http://localhost:3500',
@@ -10,7 +10,7 @@ const $api = axios.create({
 export const baseEndpoint = '/todos';
 
 const getTodos = async () => {
-  const { data } = await $api.get(baseEndpoint);
+  const { data } = await $api.get<ITask[]>(baseEndpoint);
   return data;
 };
 
@@ -24,8 +24,8 @@ const updateTodo = async (todo: ITask) => {
   return data;
 };
 
-export const deleteTodo = async ({ id }: { id: number }) => {
-  return await $api.delete(`${baseEndpoint}/${id}`);
+const deleteTodo = async ({ id }: { id: ITask['id'] }) => {
+  return await $api.delete(`${baseEndpoint}/${id}`, { data: id });
 };
 export const requests = {
   getTodos,
