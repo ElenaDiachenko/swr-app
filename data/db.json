@@ -46,7 +46,7 @@
       "userId": 1,
       "id": 13,
       "title": "et doloremque nulla",
-      "completed": true
+      "completed": false
     },
     {
       "userId": 1,
@@ -57,14 +57,14 @@
     {
       "userId": 1,
       "title": "learn react",
-      "completed": false,
+      "completed": true,
       "id": 15
     },
     {
       "userId": 1,
       "title": "learn swr",
-      "completed": false,
-      "id": 16
+      "completed": true,
+      "id": 17
     }
   ]
 }

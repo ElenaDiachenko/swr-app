@@ -16,7 +16,11 @@ export const Tasks = () => {
     <div className="flex flex-col gap-2">
       {isLoading ? <p>Loading ...</p> : null}
       {error ? <p>{error.message}</p> : null}
-      {todos?.length && todos.map((t) => <TaskItem key={t.id} task={t} />)}
+      {todos?.length ? (
+        todos.map((t) => <TaskItem key={t.id} task={t} />)
+      ) : (
+        <p>No added tasks yet</p>
+      )}
     </div>
   );
 };

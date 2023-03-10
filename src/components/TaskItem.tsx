@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import toast from 'react-hot-toast';
 import { ITask } from '../interfaces/ITask';
-// import useSWR from 'swr';
+
 import { requests, baseEndpoint as cacheKey } from '../api/API';
 import { useSWRConfig } from 'swr/_internal';
+import { deleteTodoOptions, updateTodoOptions } from '../api/SWROptions';
 
 type Props = {
   task: ITask;
@@ -14,7 +15,11 @@ export const TaskItem: FC<Props> = ({ task }) => {
 
   const deleteTodoMutation = async ({ id }: { id: number }) => {
     try {
-      await mutate(cacheKey, requests.deleteTodo({ id }));
+      await mutate(
+        cacheKey,
+        requests.deleteTodo({ id }),
+        deleteTodoOptions({ id }),
+      );
       toast.success('Success! Deleted item.');
     } catch (error) {
       toast.error('Failed to delete the item.');
@@ -23,7 +28,11 @@ export const TaskItem: FC<Props> = ({ task }) => {
 
   const updateTodoMutation = async (updatedTodo: ITask) => {
     try {
-      await mutate(cacheKey, requests.updateTodo(updatedTodo));
+      await mutate(
+        cacheKey,
+        requests.updateTodo(updatedTodo),
+        updateTodoOptions(updatedTodo),
+      );
 
       toast.success('Success! Updated item.');
     } catch (err) {

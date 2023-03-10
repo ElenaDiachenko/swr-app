@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { requests, baseEndpoint as cacheKey } from '../api/API';
 import { useSWRConfig } from 'swr/_internal';
 import { ITask } from '../interfaces/ITask';
+import { addTodoOptions } from '../api/SWROptions';
 
 export const Input = () => {
   const [newTask, setNewTask] = useState('');
@@ -10,7 +11,11 @@ export const Input = () => {
 
   const addTodoMutation = async (newTask: ITask) => {
     try {
-      await mutate(cacheKey, requests.addTodo(newTask));
+      await mutate(
+        cacheKey,
+        requests.addTodo(newTask),
+        addTodoOptions(newTask),
+      );
       toast.success('Success! Added new item.');
     } catch (error) {
       toast.error('Failed to add the new item.');
