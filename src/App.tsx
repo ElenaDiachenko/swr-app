@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from './components/Container';
 import { Input } from './components/Input';
+import { Tasks } from './components/Tasks';
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
         <div className="border shadow p-10 flex flex-col gap-10 sm:w-[640px]">
           <Container title={' Hello'}>
             <Input />
+          </Container>
+          <Container title={'Tasks'}>
+            <Tasks />
           </Container>
         </div>
       </div>
