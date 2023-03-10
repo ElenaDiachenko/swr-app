@@ -7,7 +7,7 @@ type ContainerProps = {
 
 export const Container: FC<ContainerProps> = ({ children, title }) => {
   return (
-    <div className="bg-slate-400 p-4 border shadow rounded-md">
+    <div className="bg-slate-600 p-4 border shadow rounded-md">
       {title && <h2 className="text-xl pb-2 text-white">{title}</h2>}
       <div>{children}</div>
     </div>
