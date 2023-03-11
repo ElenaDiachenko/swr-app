@@ -1,8 +1,10 @@
-import React from 'react';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 import { Container } from './components/Container';
 import { Input } from './components/Input';
 import { Tasks } from './components/Tasks';
+import { ErrorFallback } from './components/ErrorFallback';
 
 function App() {
   return (
@@ -14,7 +16,11 @@ function App() {
               <Input />
             </Container>
             <Container title={'Tasks'}>
-              <Tasks />
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <Suspense fallback={<p>Loading ...</p>}>
+                  <Tasks />
+                </Suspense>
+              </ErrorBoundary>
             </Container>
           </div>
         </div>
